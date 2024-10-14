@@ -1,28 +1,72 @@
-\documentclass[12pt, a4paper, oneside]{article}
-\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs}
-\title{\textbf{Homework}}
-\author{Dylaaan}
-\date{\today}
-\linespread{1.5}
-\newcounter{problemname}
-\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textsc{Problem \arabic{problemname}. }}{\\\par}
-\newenvironment{solution}{\par\noindent\textsc{Solution. }}{\\\par}
-\newenvironment{note}{\par\noindent\textsc{Note of Problem \arabic{problemname}. }}{\\\par}
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Advanced Econometrics Problem Set 1}
+\author{}
+\date{(Due Monday, October 21 in class)}
 
 \begin{document}
 
 \maketitle
 
-\begin{problem}
-    Write problem here. 
-\end{problem}
+\begin{enumerate}
+    \item[1.]1. In the potential outcomes framework, suppose that program eligibility is randomly assigned but participation cannot be enforced.To formally describe this situation,For each person \(i\), \(z_{i}\) is the eligibility indicator and \(x_{i}\) is the participation indicator. Randomized eligibility means \(z_{i}\) is independent of \((Y_{0i}, Y_{1i})\) but \(x_{i}\) might not satisfy the independence assumption.
+    \begin{itemize}
+        \item[i.] Explain why the difference in means estimator is generally no longer unbiased.
+        \item[ii.] In the context of a job training program, what kind of individual behavior(s) would cause bias?
+    \end{itemize}
 
-\begin{solution}
-    Write solution here. 
-\end{solution}
 
-\begin{note}
-    Write note here. 
-\end{note}
+
+
+
+
+
+
+    \item[2.] In fact, we can think of the policy variable, \(w\), as taking on many different values, and then \(y(w)\) denotes the outcome for policy level \(w\). For concreteness, suppose \(w\) is the dollar amount of a grant that can be used for purchasing books and electronics in college, \(y(w)\) is a measure of college performance, such as grade point average. For example, \(y(0)\) is the resulting GPA if the student receives no grant and \(y(500)\) is the resulting GPA if the grant amount is \(\$500\).\\
+    For a random draw \(i\), we observe the grant level, \(w_{i} \geq0\) and \(y_{i}=y(w_{i})\). As in the binary program evaluation case, we observe the policy level, \(w_{i}\), and then only the outcome associated with that level.
+    \begin{itemize}
+        \item[i.] Suppose a linear relationship is assumed:
+            \begin{center}
+                \(y(w)=\alpha+\beta w+\nu\),
+            \end{center}
+        where \(y(0)=\alpha+\nu\). Further, assume that for all \(i\), \(w_{i}\) is independent of \(\nu_{i}\). Show that for each \(i\), we can write
+        \begin{center}
+            \(y_{i}=\alpha_{i}+\beta w_{i}+\nu_{i}\), \(E(\nu_{i} | w_{i}) = 0\).
+        \end{center}
+        \item[ii.] In the context of i, how would you estimate \(\beta\) (and \(\alpha\)) given a random sample? Justify your answer.
+        \item[iii.] Now suppose \(w_{i}\) is possibly correlated with \(\nu_{i}\), but for a set of observed variables \(x_{i j}\),
+        \begin{center}
+            \(E(\nu_{i} | w_{i}, x_{i 1}, \ldots, x_{i k})=E(\nu_{i} | x_{i 1}, \ldots, x_{i k})=\eta+\gamma_{1}x_{i 1}+\ldots+\gamma_{k}x_{i k}\).
+        \end{center}
+         The first equality holds if \(w_{i}\) is independent of \(\nu_{i}\) conditional on \((x_{i 1}, \ldots, x_{i k})\) and the second equality assumes a linear relationship. Show that we can write 
+         \begin{center}
+            \(y_{i}=\alpha_{i}+\beta w_{i}+\gamma_{1}x_{i 1}+\ldots+\gamma_{k}x_{i k}+\nu_{i}\), \(E(\nu_{i} | w_{i}, x_{i 1}, \ldots, x_{i k}) = 0\).
+         \end{center}
+         What is the intercept \(\phi\)?
+        \item[iv.] How would you estimate \(\beta\) (along with \(\phi\) and the \(\gamma_{j}\)’s in part iii)? Explain.
+    \end{itemize}
+
+
+
+
+
+
+
+
+
+
+    
+    \begin{itemize}
+        \item [3.]3. The Current Population Survey (CPS) refers to any of the monthly surveys conducted by the US Census Bureau throughout the year, although the March CPS - considered the beginning of the annual survey cycle - is the most significant, and is the data used in this assignment.
+        Broadly, the CPS collects cross-sectional employment data of the participating households, allowing for regression wherein the independent and dependent variables are associated with the same point in time. In this problem, we will explore the relationship between educational attainment on earnings. There are numerous sites you can download the CPS data from. One source among many is http://ceprdata.org/cpsuniform-data-extracts/cps-outgoing-rotation-group/cps-org-data/
+        \begin{itemize}
+            \item[i.] Create a figure with hourly wage plotted against educational attainment for men in the US between the ages of 30 and 40 in March of 2019.
+            \item[ii.] Estimate the CEF using OLS. Why is the CEF linear in this case and show that OLS will generate a consistent estimate of the CEF?
+            \item[iii.] We wish to estimate the causal effect on earnings of college attendance relative to only completing high school. Please use the framework of the Rubin Causal Model to assess if your comparison from question ii gives you a causal estimate, e.g., what is \(D_{i}\), what is \(E[Y_{i}(0) | D_{i}=1]\), etc.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
 
 \end{document}
