@@ -1,0 +1,109 @@
+\documentclass[a4paper]{ctexart}
+%\usepackage{fdsymbol}
+\usepackage{mathtools,amsmath,amsthm,amsfonts,bm}
+\usepackage{xcolor}
+\usepackage[left=1in,right=1.25in,top=0.25in,bottom=1in]{geometry}%设置页边距
+\title{\textbf{Advanced Econometrics}}
+\author{\textbf{Problem Set 1}\\(Due Monday, October 21 in class)}
+\date{}
+
+\theoremstyle{remark}
+%\newtheorem*{solution}{解}
+%\renewcommand{\qedsymbol}{证毕}
+
+\pagenumbering{arabic}
+\pagestyle{plain}
+
+\begin{document}
+\maketitle
+
+
+
+\begin{itemize}
+
+\item[\textbf{1.}] In the potential outcomes framework, suppose that program eligibility is randomly assigned but participation cannot be enforced. To formally describe this situation, for each person $i$, $z_i$ is the eligibility indicator and $x_i$ is the participation indicator. Randomized eligibility means $z_i$ is independent of $(Y_{0i}, Y_{1i})$ but $x_i$ might not satisfy the independence assumption.
+\begin{enumerate}
+\item[i.] Explain why the difference in means estimator is generally no longer unbiased.
+\item[ii.] In the context of a job training program, what kind of individual behavior(s) would cause bias?
+\end{enumerate}
+
+\item[\textbf{2.}] The potential outcomes framework can be extended to more than two potential outcomes. In fact, we can think of the policy variable, $w$, as taking on many different values, and then $y(w)$ denotes the outcome for policy level $w$. For concreteness, suppose $w$ is the dollar amount of a grant that can be used for purchasing books and electronics in college, $y(w)$ is a measure of college performance, such as grade point average. For example, $y(0)$ is the resulting GPA if the student receives no grant and $y(500)$ is the resulting GPA if the grant amount is \$500.
+
+~~~~For a random draw $i$, we observe the grant level, $w_i\geq 0$ and $y_i=y(w_i)$. As in the binary program evaluation case, we observe the policy level, $w_i$, and then only the outcome associated with that level.
+
+\begin{enumerate}
+\item[i.] Suppose a linear relationship is assumed:
+\[y(w)=\alpha+\beta w+\nu(0),\]
+where $y(0)=\alpha+\nu$. Further, assume that for all $i$, $w_i$ is independent of $\nu_i$. Show that for each $i$, we can write
+\begin{align*}
+y_i&=\alpha_i+\beta w_i+\nu_i,\\
+E(\nu_i|w_i)&=0.
+\end{align*}
+\item[ii.] In the context of i, how would you estimate $\beta$ (and $\alpha$) given a random sample? Justify your answer. 
+\item[iii.] Now suppose $w_i$ is possibly correlated with $\nu_i$, but for a set of observed variables $x_{ij}$,
+\[E(\nu_i|w_i, x_{i1},...,x_{ik})=E(\nu_i|x_{i1},...,x_{ik})=\eta+\gamma_1 x_{i1}+...+\gamma_k x_{ik}.\]
+The first equality holds if $w_i$ is independent of $\nu_i$ conditional on $(x_{i1},...,x_{ik})$ and the second equality assumes a linear relationship. Show that we can write
+\begin{align*}
+y_i&=\phi+\beta w_i+\gamma_1 x_{i1}+...+\gamma_k x_{ik}+u_i,\\
+E(u_i|w_i, x_{i1},...,x_{ik})&=0.
+\end{align*}
+What is the intercept $\phi$?
+\item[iv.]  How would you estimate $\beta$ (along with $\phi$ and the $\gamma_j$'s in part iii? Explain.
+\end{enumerate}
+
+
+\item[\textbf{3.}] The Current Population Survey (CPS) refers to any of the monthly surveys conducted by the US Census Bureau throughout the year, although the March CPS -considered the beginning of the annual survey cycle - is the most significant, and is the data used in this assignment. Broadly, the CPS collects cross-sectional employment data of the participating households, allowing for regression wherein the independent and dependent variables are associated with the same point in time. In this problem, we will explore the relationship between educational attainment on earnings. There are numerous sites you can download the CPS data from. One source among many is http://ceprdata.org/cps-uniform-data-extracts/cps-outgoing-rotation-group/cps-org-data/
+\begin{enumerate}
+\item[i.] Create a figure with hourly wage plotted against educational attainment for men in the US between the ages of 30 and 40 in March of 2019.
+\item[ii.]  Estimate the CEF using OLS. Why is the CEF linear in this case and show that OLS will generate a consistent estimate of the CEF?
+\item[iii.]  We wish to estimate the causal effect on earnings of college attendance relative to only completing high school. Please use the framework of the Rubin Causal Model to assess if your comparison from question ii gives you a causal estimate, e.g., what is $D_i$, what is $E[Y_i(0)|D_i = 1]$, etc.
+\end{enumerate}
+
+
+\item[\textbf{4.}] We wish to evaluate the effect on annual earnings of the job training provided to participants in the National Supported Work (NSW) Demonstration study. In this study, a sample of men were randomly assigned to either receive or not receive job training. Baseline earnings were measured in 1975, which is the year before the they were randomly assigned to either the treatment or control group. Earnings were also measured in 1978, which is several years after the treatment started. More details on the NSW are available in Robert Lalonde, ``Evaluating the Econometric Evaluations of Training Programs,” American Economic Review, Vol. 76, pp. 604-620.
+
+~~The dataset for this homework is called \textbf{nsw.dta}, which can be downloaded from https://users.nber.org/$\sim$rdehejia/data/.nswdata2.html,  and includes the following variables: treatment indicator \textit{\textbf{treat}} (1 if treated, 0 if not treated), \textit{\textbf{age}} (age in years), education (years of education), \textit{\textbf{black}} (1 if black, 0 otherwise), \textit{\textbf{hispanic}} (1 if Hispanic, 0 otherwise), \textit{\textbf{married}} (1 if married, 0 otherwise), \textit{\textbf{nodegree}} (1 if no high school degree, 0 otherwise), \textit{\textbf{re75}} (earnings in 1975), and \textit{\textbf{re78}} (earnings in 1978). 
+
+\begin{enumerate}
+\item[i.] Calculate the ATE and the ATT of the policy usng a simple difference in means. How do the two values compare?
+\item[ii.] Provide evidence that the randomization worked by comparing the means of the sample characteristics in the treatment and control group. Please create a clean table that includes columns with the means of each group, the difference between the two groups and the p-value of the difference. The table should be comprehensible on its own. Include a footnote for the table with a description of the dataset. A table of this form is usually the first one in an empirical study intended to recover a causal estimate. Is the table consistent with the randomization being correctly implemented?
+\item[iii.]  Create a table that presents your evaluation of the effect of the NSW experiment on earnings. In the first column present the raw difference in means between the treatment and control group then sequentially add covariates. In the last column include estimates from a regression with all covariates. Do the estimates change much as you add covariates? Why or why not? What does this tell you?
+\item[iv.]  Do you believe your estimates of the treatment effect are unbiased of the true treatment effect? Why or why not?
+\item[v.]  Estimate and plot the density functions of the 1978 earnings for the treatment and control group.
+\end{enumerate}
+
+\item[\textbf{5.}]  Duflo, Dupas, and Kremer (2011) investigate the impact of tracking (assigning students based on initial test score) on educational attainment in a randomized experiment. An extract of their data set is available on the Bruce Hansen textbook webpage in the file \textbf{DDK2011}.
+
+~~~~In 2005, 140 primary schools in Kenya received funding to hire an extra first grade teacher to reduce class sizes. In half of the schools (selected randomly) students were assigned to classrooms based on an initial test score (``tracking''); in the remaining schools the students were randomly assigned to classrooms. For their analysis the authors restricted attention to the 121 schools which initially had a single first-grade class.
+\begin{enumerate}
+\item[i.] Do a regression of standardized test score (\textit{\textbf{totalscore}} normalized to have zero mean and variance 1) on tracking. Calculate standard errors using both the conventional robust formula, and clustering based on the school. Report and interpret the results.
+\item[ii.]  Do a regression of standardized test score on tracking, age, gender, being assigned to the contract teacher, and student's percentile in the initial distribution. (The sample size will be smaller as some observations have missing vari- ables.) Calculate standard errors using both the conventional robust formula, and clustering based on the school. Compare the two sets of standard errors. Which standard error changes the most by clustering? Which changes the least?
+
+\item[iii.]  How does the coefficient on tracking change by inclusion of the individual controls (in comparison to the results from i)?
+\end{enumerate}
+
+
+
+\iffalse
+\item \textbf{6.}
+In a fit of inspiration, you devise a clever economic theory that leads to a simple regression: $y_i = \hat\alpha_1 + \hat\beta_1x_i + e_i$. You estimate the regression and are pleased to find it fits the data well: high $R_1^2$, small standard error for the slope ($s_1$). Later that night, you have a crisis of confidence: maybe you have it all backwards. Consequently, you estimate $x_i = \hat\alpha_2 + \hat\beta_2y_i+ u_i$. Your doubts are confirmed when you find this regression also fits the data well: high $R_2^2$, small standard error ($s_2$). The next morning, you set out to understand your results.
+\begin{enumerate}
+\item[i.] What is the relationship between $R_1^2$ and $R_2^2$?
+\item[ii.]  What is the relationship between $\hat\beta_1$ and $\hat\beta_2$?
+\item[iii.]  What is the relationship between $t_1 = \hat\beta_1/s_1$ and $t_2 = \hat\beta_2/s_2$?
+\end{enumerate}
+
+\item \textbf{5.} i. [\textbf{Frisch-Waugh-Lovell Theorem}] Consider the following two regression models:
+\begin{align}
+\bm{y}&=\bm{X_1\beta_1+X_2\beta_2+\varepsilon},\\
+\bm{M_2y}& = \bm{M_2X_1\beta_1 + \varepsilon}.
+\end{align}
+where $\bm{M_2 = I_n-X_2(X_2^{'}X_2)^{-1}X_2^{'}}$. Show that the least squares estimator of $\bm\beta_1$ is the same in both models.
+
+ii. Suppose we write the model as $\bm{y}=\bm{X_1\beta_1+X_2\beta_2+\varepsilon}$ and $E[\bm\varepsilon|\bm{X}] = \bm{X_1\gamma}$ for some $\bm{\gamma\neq 0}$. Is the least squares estimator of $\bm\beta_2$  biased? Prove your claim.
+\fi
+
+\end{itemize}
+
+
+\end{document}
