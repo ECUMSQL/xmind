@@ -29,7 +29,7 @@
 \end{enumerate}
 
 \begin{solution}
-    i.项目资格的随机发放实际上不构成RCT，个体的参与行为实际影响Y的变化\\
+    i. 项目资格的随机发放实际上不构成RCT，个体的参与行为实际影响Y的变化\\
     令
     \begin{equation} 
         x_i = 
@@ -52,8 +52,10 @@
     \end{align}
     已知此时$E(Y_{0i}|x_i=1)-E(Y_{0i}|x_i=0)$为选择性偏误，代表参加项目和未参加项目人员本身的差距。由题目知$x_i$可能不满足独立性假设。\\
     因此，$E(Y_{0i}|x_i=1)\neq E(Y_{0i}|x_i=0)$。\\
-    此时$E(Y_i|x_i=1) - E(Y_i|x_i=0) \neq E(Y_{1i}-Y_{0i}|x_i=1)$。即均值估计量差异有偏。
-
+    此时$E(Y_i|x_i=1) - E(Y_i|x_i=0) \neq E(Y_{1i}-Y_{0i}|x_i=1)$。即均值估计量差异有偏。\\
+    \\
+    ii. 由上文知选择性偏差的实际意义是个人特质由于选择造成的偏差。假设Y是个人的职业能力，由于在培训项目中参与无法被强制，那么具有较强职业能力的人员若偏向不参与，而初始能力较差的人员偏向于参与，那么就会导致$E(Y_{0i}|x_i=1)-E(Y_{0i}|x_i=0)$值为负。
+    从而缩小了$E(Y_i|x_i=1) - E(Y_i|x_i=0)$的大小，使得估计量实际偏小。
 \end{solution}
 
 \item[\textbf{2.}] The potential outcomes framework can be extended to more than two potential outcomes. In fact, we can think of the policy variable, $w$, as taking on many different values, and then $y(w)$ denotes the outcome for policy level $w$. For concreteness, suppose $w$ is the dollar amount of a grant that can be used for purchasing books and electronics in college, $y(w)$ is a measure of college performance, such as grade point average. For example, $y(0)$ is the resulting GPA if the student receives no grant and $y(500)$ is the resulting GPA if the grant amount is \$500.
