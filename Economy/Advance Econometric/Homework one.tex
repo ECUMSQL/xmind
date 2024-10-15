@@ -8,7 +8,7 @@
 \date{}
 
 \theoremstyle{remark}
-\newtheorem*{solution}{Proof}
+\newtheorem*{solution}{解}
 \renewcommand{\qedsymbol}{证毕}
 
 \pagenumbering{arabic}
@@ -28,7 +28,23 @@
 \end{enumerate}
 
 \begin{solution}
-    
+    项目资格的随机发放实际上不构成RCT，个体的参与行为实际影响Y的变化\\
+    令
+    \begin{equation} 
+        x_i = 
+        \begin{cases}
+            1, &\text{参与了活动.} \\
+            0, &\text{未参与活动.}
+        \end{cases}
+    \end{equation}
+    \begin{equation}
+        Y_i = 
+        \begin{cases}
+            \Y_{1i}, &\text{x_i = 1} \\
+            \Y_0i,, &\text{x_i = 0}
+        \end{cases} 
+    \end{equation}
+
 \end{solution}
 
 \item[\textbf{2.}] The potential outcomes framework can be extended to more than two potential outcomes. In fact, we can think of the policy variable, $w$, as taking on many different values, and then $y(w)$ denotes the outcome for policy level $w$. For concreteness, suppose $w$ is the dollar amount of a grant that can be used for purchasing books and electronics in college, $y(w)$ is a measure of college performance, such as grade point average. For example, $y(0)$ is the resulting GPA if the student receives no grant and $y(500)$ is the resulting GPA if the grant amount is \$500.
