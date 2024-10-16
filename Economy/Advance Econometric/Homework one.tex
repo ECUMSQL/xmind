@@ -21,13 +21,14 @@
 
 
 \begin{itemize}
-
+%% 第一题
 \item[\textbf{1.}] In the potential outcomes framework, suppose that program eligibility is randomly assigned but participation cannot be enforced. To formally describe this situation, for each person $i$, $z_i$ is the eligibility indicator and $x_i$ is the participation indicator. Randomized eligibility means $z_i$ is independent of $(Y_{0i}, Y_{1i})$ but $x_i$ might not satisfy the independence assumption.
 \begin{enumerate}
 \item[i.] Explain why the difference in means estimator is generally no longer unbiased.
 \item[ii.] In the context of a job training program, what kind of individual behavior(s) would cause bias?
 \end{enumerate}
 
+%%第一题解答
 \begin{solution}
     i. 项目资格的随机发放实际上不构成RCT，个体的参与行为实际影响Y的变化\\
     令
@@ -58,6 +59,7 @@
     从而缩小了$E(Y_i|x_i=1) - E(Y_i|x_i=0)$的大小，使得估计量实际偏小。
 \end{solution}
 
+%%第二题
 \item[\textbf{2.}] The potential outcomes framework can be extended to more than two potential outcomes. In fact, we can think of the policy variable, $w$, as taking on many different values, and then $y(w)$ denotes the outcome for policy level $w$. For concreteness, suppose $w$ is the dollar amount of a grant that can be used for purchasing books and electronics in college, $y(w)$ is a measure of college performance, such as grade point average. For example, $y(0)$ is the resulting GPA if the student receives no grant and $y(500)$ is the resulting GPA if the grant amount is \$500.
 
 ~~~~For a random draw $i$, we observe the grant level, $w_i\geq 0$ and $y_i=y(w_i)$. As in the binary program evaluation case, we observe the policy level, $w_i$, and then only the outcome associated with that level.
@@ -82,7 +84,12 @@ What is the intercept $\phi$?
 \item[iv.]  How would you estimate $\beta$ (along with $\phi$ and the $\gamma_j$'s in part iii? Explain.
 \end{enumerate}
 
+%%第二题解答
+\begin{proof}
+    
+\end{proof}
 
+%%第三题
 \item[\textbf{3.}] The Current Population Survey (CPS) refers to any of the monthly surveys conducted by the US Census Bureau throughout the year, although the March CPS -considered the beginning of the annual survey cycle - is the most significant, and is the data used in this assignment. Broadly, the CPS collects cross-sectional employment data of the participating households, allowing for regression wherein the independent and dependent variables are associated with the same point in time. In this problem, we will explore the relationship between educational attainment on earnings. There are numerous sites you can download the CPS data from. One source among many is http://ceprdata.org/cps-uniform-data-extracts/cps-outgoing-rotation-group/cps-org-data/
 \begin{enumerate}
 \item[i.] Create a figure with hourly wage plotted against educational attainment for men in the US between the ages of 30 and 40 in March of 2019.
