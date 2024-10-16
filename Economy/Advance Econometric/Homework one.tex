@@ -32,31 +32,33 @@
 \begin{solution}
     i. 项目资格的随机发放实际上不构成RCT，个体的参与行为实际影响Y的变化\\
     令
-    \begin{equation} 
+    \begin{equation*} 
         x_i = 
         \begin{cases}
             1, &\text{参与了活动.} \\
             0, &\text{未参与活动.}
         \end{cases}
-    \end{equation}
-    \begin{equation}
+    \end{equation*}
+    \begin{equation*}
         Y_i = 
         \begin{cases}
             Y_{1i}, &{x_i = 1} \\
             Y_{0i}, &{x_i = 0}
         \end{cases} 
-    \end{equation}
+    \end{equation*}
     其条件期望为：
-    \begin{align}
+    \begin{align*}
         E(Y_i|x_i=1) - E(Y_i|x_i=0) = E(Y_{1i}|x_i=1)-E(Y_{0i}|x_i=0)\\
         =E(Y_{1i}-Y_{0i}|x_i=1)+E(Y_{0i}|x_i=1)-E(Y_{0i}|x_i=0)
-    \end{align}
+    \end{align*}
     已知此时$E(Y_{0i}|x_i=1)-E(Y_{0i}|x_i=0)$为选择性偏误，代表参加项目和未参加项目人员本身的差距。由题目知$x_i$可能不满足独立性假设。\\
     因此，$E(Y_{0i}|x_i=1)\neq E(Y_{0i}|x_i=0)$。\\
     此时$E(Y_i|x_i=1) - E(Y_i|x_i=0) \neq E(Y_{1i}-Y_{0i}|x_i=1)$。即均值估计量差异有偏。\\
     \\
     ii. 由上文知选择性偏差的实际意义是个人特质由于选择造成的偏差。假设Y是个人的职业能力，由于在培训项目中参与无法被强制，那么具有较强职业能力的人员若偏向不参与，而初始能力较差的人员偏向于参与，那么就会导致$E(Y_{0i}|x_i=1)-E(Y_{0i}|x_i=0)$值为负。
     从而缩小了$E(Y_i|x_i=1) - E(Y_i|x_i=0)$的大小，使得估计量实际偏小。
+    \\
+    \qedsymbol
 \end{solution}
 
 %%第二题
@@ -85,9 +87,60 @@ What is the intercept $\phi$?
 \end{enumerate}
 
 %%第二题解答
-\begin{proof}
-    
-\end{proof}
+\begin{solution}
+    i. 由题设知，解释变量和被解释变量之间满足线性关系，有ols估计知，有$SSR(\alpha_i,\beta_i)$最小化。即
+    \begin{equation*}
+        SSR(\alpha_i,\beta_i) = \sum_{i=1}^{N} (y_i - \alpha_i - \beta_i w_i)^2
+    \end{equation*}
+    对SSR取最小值，有一阶条件：
+    \begin{equation*}
+        \frac{\partial SSR(\hat\alpha_i,\hat\beta_i)}{\partial \alpha_i} = 0,\\
+        \frac{\partial SSR(\hat\alpha_i,\hat\beta_i)}{\partial \beta_i} = 0.
+    \end{equation*}
+    解得：
+    \begin{equation*}
+        \begin{cases}
+            \sum_{i=1}^{N} (y_i - \hat{\alpha} - \hat{\beta}w_i) = 0\\
+            \sum_{i=1}^{N} x_i(y_i -\hat{\alpha} - \hat{\beta}w_i) = 0.
+        \end{cases}
+    \end{equation*}
+    由第二个条件可以得出$E(x_i(y_i - \hat{\alpha} - \hat{\beta}w_i))=0$。又因为$\nu_i = y_i - \hat{\alpha} - \hat{\beta}w_i$。则有
+    \begin{equation*}
+        E(\nu_i w_i) = 0.
+    \end{equation*}
+    又因为$\nu_i$与$w_i$独立，所以有$E(\nu_i w_i) = E(\nu_i) E(w_i) = 0$。可知$E(\nu_i) = 0$。\\得$E(\nu_i|w_i) = E(\nu_i) = 0$
+
+
+    ii. 由上题一阶条件知：%%结构回归
+    \begin{equation*}
+        \begin{cases}
+            \sum_{i=1}^{N} (y_i - \hat{\alpha} - \hat{\beta}w_i) = 0\\
+            \sum_{i=1}^{N} x_i(y_i -\hat{\alpha} - \hat{\beta}w_i) = 0.
+        \end{cases}
+    \end{equation*}
+    令$\bar{w} = \frac{1}{N}\sum_{i=1}^N w_i, \bar{y_i} = \frac{1}{N}\sum_{i=1}^{N} y_i.$
+    则有
+    \begin{equation*}
+        \begin{cases}
+            \bar{wy} = \hat{\alpha}\bar{w} + \hat{\beta}\bar{w^2}\\
+            \bar{y} = \hat{\alpha} + \hat{\beta}\bar{w}
+        \end{cases}
+    \end{equation*}
+    求解上式得：
+    \begin{equation*}
+        \begin{cases}
+            \hat{\beta} = \frac{cov_N(w_i,y_i)}{Var_N(w_i)}\\
+            \hat{\alpha} = \bar{y} - \hat{\beta}\bar{w}
+        \end{cases}
+    \end{equation*}
+
+
+    iii. 
+
+
+
+    \qedsymbol
+\end{solution}
 
 %%第三题
 \item[\textbf{3.}] The Current Population Survey (CPS) refers to any of the monthly surveys conducted by the US Census Bureau throughout the year, although the March CPS -considered the beginning of the annual survey cycle - is the most significant, and is the data used in this assignment. Broadly, the CPS collects cross-sectional employment data of the participating households, allowing for regression wherein the independent and dependent variables are associated with the same point in time. In this problem, we will explore the relationship between educational attainment on earnings. There are numerous sites you can download the CPS data from. One source among many is http://ceprdata.org/cps-uniform-data-extracts/cps-outgoing-rotation-group/cps-org-data/
