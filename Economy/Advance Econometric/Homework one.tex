@@ -109,7 +109,7 @@ What is the intercept $\phi$?
         E(\nu_i w_i) = 0.
     \end{equation*}
     又因为$\nu_i$与$w_i$独立，所以有$E(\nu_i w_i) = E(\nu_i) E(w_i) = 0$。可知$E(\nu_i) = 0$。\\得$E(\nu_i|w_i) = E(\nu_i) = 0$
-
+    \\
 
     ii. 由上题一阶条件知：%%解构回归
     \begin{equation*}
@@ -133,12 +133,37 @@ What is the intercept $\phi$?
             \hat{\alpha} = \bar{y} - \hat{\beta}\bar{w}
         \end{cases}
     \end{equation*}
+    \\
 
-
-    iii. 
-
-
-
+    iii. 由上题知 $y_i = \alpha_i+\beta w_i+\nu_i$。令
+    \begin{equation*}
+        \begin{cases}
+            X = (x_{i1}, x_{i2}, x_{i3}, ..., x_{ik})\\
+            \gamma = (\gamma_{i1},\gamma_{i2}, \gamma_{i3}, ..., \gamma_{ik})
+        \end{cases}
+    \end{equation*}
+    则$E(\nu_i|w_i, x_{i1},...,x_{ik})=\eta+\gamma_1 x_{i1}+...+\gamma_k x_{ik} = \eta + X^T\gamma$。\\
+    根据条件期望的分解性质,得$\nu_i = E(\nu_i|w_i,x_{i1}, ..., x_{ik}) + \xi$且$E(\xi|w_i,x_{i1}, ..., x_{ik}) = 0$\\
+    带入上式得出:
+    \begin{align*}
+        y_i = \alpha_i + \beta w_i + E(\nu_i|w_i,x_{i1}, ..., x_{ik}) + \xi\\
+        =\alpha_i + \beta w_i + \eta + X^T\gamma +\xi
+    \end{align*}
+    令$\phi = \alpha_i + \eta, u_i = \xi$。则式子变为$y_i =\phi + \beta w_i + X^T\gamma + u_i$.\\且$E(\xi|w_i,x_{i1}, ..., x_{ik}) = E(u_i|w_i,x_{i1}, ..., x_{ik}) = 0$
+    \\
+    
+    iv. 令$X_i = (1, w_i ,x_{i1}, ..., x_{ik})^T, \hat{\beta} = (\alpha, \beta, \eta_{1}, ..., \eta_{k})$。由ols推导最小化残差知，知FOC为
+    \begin{equation*}
+        \sum_{i=1}^{k} X_i(y_i - X_i^T\hat{\beta}) = 0       
+    \end{equation*}
+    解得：
+    \begin{center}
+     $\sum_{i=1}^{k}X_iy_i = (\sum_{i=1}^{k}X_iX_i^T)\hat{\beta}$
+    \end{center}
+    则$\hat{\beta} = \frac{sum_{i=1}^{k}X_iy_i}{\sum_{i=1}^{k}X_iX_i^T)}$
+    
+    
+    
     \qedsymbol
 \end{solution}
 
