@@ -111,11 +111,11 @@ What is the intercept $\phi$?
     又因为$\nu_i$与$w_i$独立，所以有$E(\nu_i w_i) = E(\nu_i) E(w_i) = 0$。可知$E(\nu_i) = 0$。\\得$E(\nu_i|w_i) = E(\nu_i) = 0$
 
 
-    ii. 由上题一阶条件知：%%结构回归
+    ii. 由上题一阶条件知：%%解构回归
     \begin{equation*}
         \begin{cases}
             \sum_{i=1}^{N} (y_i - \hat{\alpha} - \hat{\beta}w_i) = 0\\
-            \sum_{i=1}^{N} x_i(y_i -\hat{\alpha} - \hat{\beta}w_i) = 0.
+            \sum_{i=1}^{N} w_i(y_i -\hat{\alpha} - \hat{\beta}w_i) = 0.
         \end{cases}
     \end{equation*}
     令$\bar{w} = \frac{1}{N}\sum_{i=1}^N w_i, \bar{y_i} = \frac{1}{N}\sum_{i=1}^{N} y_i.$
