@@ -1,5 +1,7 @@
 \documentclass[a4paper]{ctexart}
 %\usepackage{fdsymbol}
+\usepackage{graphicx}
+\usepackage{epstopdf}
 \usepackage{mathtools,amsmath,amsthm,amsfonts,bm}
 \usepackage{xcolor}
 \usepackage{cases}
@@ -152,7 +154,7 @@ What is the intercept $\phi$?
     令$\phi = \alpha_i + \eta, u_i = \xi$。则式子变为$y_i =\phi + \beta w_i + X^T\gamma + u_i$.\\且$E(\xi|w_i,x_{i1}, ..., x_{ik}) = E(u_i|w_i,x_{i1}, ..., x_{ik}) = 0$
     \\
     
-    iv. 令$X_i = (1, w_i ,x_{i1}, ..., x_{ik})^T, \hat{\beta} = (\alpha, \beta, \eta_{1}, ..., \eta_{k})$。由ols推导最小化残差知，知FOC为
+    iv. 令$X_i = (1, w_i ,x_{i1}, ..., x_{ik})^T, \hat{\beta} = (\phi, \beta, \gamma_{1}, ..., \gamma_{k})^T$。由ols推导最小化残差知，知FOC为
     \begin{equation*}
         \sum_{i=1}^{k} X_i(y_i - X_i^T\hat{\beta}) = 0       
     \end{equation*}
@@ -160,9 +162,7 @@ What is the intercept $\phi$?
     \begin{center}
      $\sum_{i=1}^{k}X_iy_i = (\sum_{i=1}^{k}X_iX_i^T)\hat{\beta}$
     \end{center}
-    则$\hat{\beta} = \frac{sum_{i=1}^{k}X_iy_i}{\sum_{i=1}^{k}X_iX_i^T)}$
-    
-    
+    则$\hat{\beta} = \frac{\sum_{i=1}^{k}X_iy_i}{\sum_{i=1}^{k}X_iX_i^T)}$。其中$\phi = \frac{cov(y_i,\tilde{w_i})}{Var(\tilde{w_i})},\gamma_k = \frac{cov(y_i,\widetilde{x_{ik}})}{Var(\widetilde{x_{ik}})}$。$\tilde{w_i}, \widetilde{x_{ik}}$表示对其他回归元回归的残差。%%解构回归
     
     \qedsymbol
 \end{solution}
@@ -175,7 +175,36 @@ What is the intercept $\phi$?
 \item[iii.]  We wish to estimate the causal effect on earnings of college attendance relative to only completing high school. Please use the framework of the Rubin Causal Model to assess if your comparison from question ii gives you a causal estimate, e.g., what is $D_i$, what is $E[Y_i(0)|D_i = 1]$, etc.
 \end{enumerate}
 
+\begin{solution}
+    i.  在根据年龄，时间对于数据进行清洗过后得到1717符合条件的数据，同时去除存在缺失值的条目，得到1275条数据，绘制散点图得：%%有个货乱填
+    \begin{figure}[htbp] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
+        \centering
+        \includegraphics[scale=0.5]{Scatter plot in us 3.1.eps} %%参数表示将原图缩小或者扩大
+        \caption{Scatter Plot}
+        %%\label{}标签
+    \end{figure}
 
+
+    ii. 由CEF的分解公式知：$Y_i = E(Y_i|X_i)+\xi$。由于数据中每个回归元对应着对应着一个不同的参数，由此为饱和模型，则其CEF为线性的。根据线性条件期望函数定理，则总体回归函数也为线性的，条件期望的回归定理也为我们提供了CEF的最优线性近似。
+        \begin{equation*}
+            \beta = \underset{b}{\arg \min}E{(E[Y_i|X_i] - X_i b)}
+        \end{equation*}
+        所以，由于OLS模型，对小时工资和教育水平进行回归，得：
+        
+
+
+
+
+
+
+
+
+
+
+
+\end{solution}
+
+%%第四题
 \item[\textbf{4.}] We wish to evaluate the effect on annual earnings of the job training provided to participants in the National Supported Work (NSW) Demonstration study. In this study, a sample of men were randomly assigned to either receive or not receive job training. Baseline earnings were measured in 1975, which is the year before the they were randomly assigned to either the treatment or control group. Earnings were also measured in 1978, which is several years after the treatment started. More details on the NSW are available in Robert Lalonde, ``Evaluating the Econometric Evaluations of Training Programs,” American Economic Review, Vol. 76, pp. 604-620.
 
 ~~The dataset for this homework is called \textbf{nsw.dta}, which can be downloaded from https://users.nber.org/$\sim$rdehejia/data/.nswdata2.html,  and includes the following variables: treatment indicator \textit{\textbf{treat}} (1 if treated, 0 if not treated), \textit{\textbf{age}} (age in years), education (years of education), \textit{\textbf{black}} (1 if black, 0 otherwise), \textit{\textbf{hispanic}} (1 if Hispanic, 0 otherwise), \textit{\textbf{married}} (1 if married, 0 otherwise), \textit{\textbf{nodegree}} (1 if no high school degree, 0 otherwise), \textit{\textbf{re75}} (earnings in 1975), and \textit{\textbf{re78}} (earnings in 1978). 
