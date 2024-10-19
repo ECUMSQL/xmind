@@ -3,7 +3,10 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{mathtools,amsmath,amsthm,amsfonts,bm}
+\usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{threeparttable}
 \usepackage{cases}
 \usepackage[left=1in,right=1.25in,top=0.25in,bottom=1in]{geometry}%设置页边距
 \title{\textbf{Advanced Econometrics}}
@@ -185,21 +188,59 @@ What is the intercept $\phi$?
     \end{figure}
 
 
-    ii. 由CEF的分解公式知：$Y_i = E(Y_i|X_i)+\xi$。由于数据中每个回归元对应着对应着一个不同的参数，由此为饱和模型，则其CEF为线性的。根据线性条件期望函数定理，则总体回归函数也为线性的，条件期望的回归定理也为我们提供了CEF的最优线性近似。
+    ii. 由CEF的分解公式知：$Y_i = E(Y_i|X_i)+\xi$。由于CEF的实际意义是在X给定的条件下，Y的均值，因此对X即教育条件进行分组求均值，得出CEF，进行OLS拟合如下图所示。
+    \begin{figure}[htbp] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
+        \centering
+        \includegraphics[scale=0.5]{R CEF.eps}
+        \caption{CEF Plot}
+    \end{figure}
+    可以看出CEF是线性近似的，那么由CEF的回归定理，最优线性估计以及线性条件期望函数定理，总体回归方程也应该是线性近似的，且是对Y和CEF的最优线性估计量。
         \begin{equation*}
             \beta = \underset{b}{\arg \min}E{(E[Y_i|X_i] - X_i b)}
         \end{equation*}
-        所以，由于OLS模型，对小时工资和教育水平进行回归，得：
-        
+    由上知，此种情况下CEF是线性的，则有$Y_i = X_i \beta+e_i,\beta_{OLS} -\beta =(X'X)^{-1}X'e_i$。\\
+    通过变换：
+    \begin{equation*}
+        \beta_{OLS} -\beta =(X'X)^{-1}X'e_i=(\frac{1}{N}X'X)^{-1}\frac{1}{N}X'e_i=
+        (\frac{1}{N}\sum_{i=1}^{N} X_i'X_i)^{-1}-\frac{1}{N}\sum_{i=1}^{N}X_i'e_i 
+    \end{equation*}
+    又因为在样本足够大时，样本均值依概率收敛于总体均值（总体矩）。则有\\
+    $\frac{1}{N}\sum_{i=1}^{N} X_i'X_i\xrightarrow{P}E(X_i'X_i),\frac{1}{N}\sum_{i=1}^{N}X_i'e_i\xrightarrow{P}E(X_i'e_i)$
+    又因为$E(X_i'e_i)=0$.所以有：$\beta_{OLS} -\beta\xrightarrow0$。因此OLS将会产生CEF的一致估计。
 
-
-
-
-
-
-
-
-
+    iii. 根据条件期望的定义，有：
+    \begin{tabular}[t]{l|c}
+        \hline
+        education & average wage \\
+        \hline
+        LTHS& 16.82391 \\
+        HS &  22.62468\\
+        Some colleges & 25.83010 \\
+        College & 36.16484 \\
+        Advanced & 43.75207 \\
+        \hline
+    \end{tabular}\\
+    分别令教育水平依次从1到5进行排序，可知$D_i$表示所获教育的程度，有ols估计知\\
+    容易知:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}[t]{l|c}
+            \hline
+            education & average wage \\
+            \hline
+            HS &  22.62468\\
+            College & 35.24900 \\
+            \hline
+        \end{tabular}
+    \end{table}\\
+    \begin{equation*}
+        D_i=
+        \begin{cases*}
+            1, & \text{上过大学}\\
+            0, & \text{上高中未上大学}\\
+        \end{cases*}
+    \end{equation*}
+    且$E(Y_i(0)|D_i = 1)$。表示上了大学的人如果未上大学的薪资。若无选择性偏误，那么其处理效应则是12.6，如存在选择偏误，则无法测算。\\
 
 
 \end{solution}
@@ -217,6 +258,91 @@ What is the intercept $\phi$?
 \item[v.]  Estimate and plot the density functions of the 1978 earnings for the treatment and control group.
 \end{enumerate}
 
+%%第四题解答
+\begin{solution}
+    i.本题假设在三年期间不存在任何其他可能影响收入的事件发生，或者说假设培训对于收入在三年间的影响是最大的。对于ATT有Rubin模型知：ATE=$E(Y_{1i}|treat_i=1)-E(Y_{1i}|treat_i=0)$
+    数据计算得：ATT=  2910.254 。而ATE=2949.669 。因此ATE>ATT。\\
+
+    ii. 通过数据的表格如下：\\
+    \begin{table}[h]
+        \centering
+        \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                variables & means & difference & p-value \\   
+                \hline
+                age0 & 24.45 & \multirow{2}{*}{0.18}  & \multirow{2}{*}{0.72} \\
+                age & 24.63 &   &\\
+                education0 & 10.19 & \multirow{2}{*}{0.19} & \multirow{2}{*}{0.14}\\
+                education1 & 10.38 &  & \\
+                black0 & 0.80 & \multirow{2}{*}{0.00} & \multirow{2}{*}{0.96} \\
+                black1 & 0.80 &  &  \\
+                hispanic0 & 0.11 & \multirow{2}{*}{-0.02} & \multirow{2}{*}{0.42} \\
+                hispanic1 & 0.09 &  &  \\
+                married0 & 0.16 & \multirow{2}{*}{0.01} & \multirow{2}{*}{0.70} \\ 
+                married1 & 0.17 &  &  \\    
+                nodegree0 & 0.81 & \multirow{2}{*}{-0.08} & \multirow{2}{*}{0.00} \\
+                nodegree1 & 0.73 &  &  \\
+                re750 & 3026.68 & \multirow{2}{*}{39.42} & \multirow{2}{*}{0.92} \\
+                re751 & 3066.10 &  &   \\
+                \hline
+            \end{tabular} 
+            \begin{tablenotes}
+                \footnotesize
+                    \item[1]P-value小于0.05时证明在5\%的置信区间内，差异显著
+            \end{tablenotes}
+        \end{threeparttable}
+        \caption{\label{font-table} 随机化检验. }
+    \end{table}\\
+    由上表知，除了学位，其他的特征的差异都不显著，P值大于0.05。因此可以认为随机化是有效的。\\
+\\
+\\
+\\
+
+    iii. 由上知，75年的收入均值的差异不显著。根据stata做表得：\\
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+            \hline
+            variables & treat==0& treat==1 \\   
+            \hline
+            mean & 5090.048 & 5976.352 \\
+            treat & \multicolumn{2}{c}{886.3037}\\
+            age & \multicolumn{2}{c}{882.2074}\\
+    
+            education & \multicolumn{2}{c}{831.039} \\
+
+            black & \multicolumn{2}{c}{826.4462}\\
+
+            hispanic & \multicolumn{2}{c}{824.3952}  \\
+
+            married & \multicolumn{2}{c}{820.4004} \\    
+
+            re75 & \multicolumn{2}{c}{830.6734} \\   
+
+            nodegree &\multicolumn{2}{c}{806.5113} \\
+            \hline
+        \end{tabular} 
+        \caption{\label{font-table} 培训处理效果. }
+    \end{table}\\
+    由表可以看出，表中的回归系数基本变化不大，这证明基本不存在选择偏误，表明明处理效应相对稳定，不受这些协变量的影响。实验的随机化很好。
+    
+
+
+    iv. 由上两题知，实验的随机化水平很好，这意味着基本不存在选择偏误。那么实际的处理效应基本等于处理前后的收入的差距。由于初始的差异不显著，可以认为收入可以被很好的由是否培训的处理预测，即均值估计量差异基本无偏。
+    \\
+    
+    v.依据数据，得出的density functions画图如下：\\
+    \begin{figure}[htbp] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
+        \centering
+        \includegraphics[scale=0.5]{density function.eps}
+        \caption{Density functions}
+        %%\label{}标签
+    \end{figure}
+\end{solution}
+
+
+%%第五题
 \item[\textbf{5.}]  Duflo, Dupas, and Kremer (2011) investigate the impact of tracking (assigning students based on initial test score) on educational attainment in a randomized experiment. An extract of their data set is available on the Bruce Hansen textbook webpage in the file \textbf{DDK2011}.
 
 ~~~~In 2005, 140 primary schools in Kenya received funding to hire an extra first grade teacher to reduce class sizes. In half of the schools (selected randomly) students were assigned to classrooms based on an initial test score (``tracking''); in the remaining schools the students were randomly assigned to classrooms. For their analysis the authors restricted attention to the 121 schools which initially had a single first-grade class.
@@ -226,6 +352,95 @@ What is the intercept $\phi$?
 
 \item[iii.]  How does the coefficient on tracking change by inclusion of the individual controls (in comparison to the results from i)?
 \end{enumerate}
+
+
+
+%%第五题解答
+\begin{solution}
+    i. 根据题意知，对于totalscore进行标准化。其次根据要求进行稳健回归，数据图如下所示：\\
+    \begin{table}[h]
+        \centering
+        \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                standardize & coefficient & Robuststd.err & P \\
+                \hline
+                Tracking & 0.1380913 & 0.0262102 & 0.00 \\
+                cons  &  -0.0710354 & 0.0186418  & 0.00\\
+                \hline
+            \end{tabular} 
+        \end{threeparttable}
+        \caption{\label{font-table} 稳健标准误. }
+    \end{table}
+
+    \begin{table}[h]
+        \centering
+        \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                standardize & coefficient & Robuststd.err & P \\
+                \hline
+                Tracking & 0.1380913 & 0.0772362 & 0.076 \\
+                cons  & -0.0710354 & 0.0543934 & 0.194\\
+                \hline
+            \end{tabular} 
+        \end{threeparttable}
+        \caption{\label{font-table} 聚类稳健的标准误. }
+    \end{table}
+    由上表可以看出稳健的标准误以及聚类稳健的标准误情况下，系数基本没有差距，这表明分班对于测试成绩具有正向影响。同时也看出在学校层面的聚类标准误不显著，这可能是因为学校于分班存在某种相关性，导致聚类稳健的显著性下降。
+
+
+
+
+
+    ii. 由数据回归知，
+    \begin{table}[h]
+        \centering
+        \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                standardize & coefficient & Robuststd.err & P \\
+                \hline
+                Tracking &  0.1725117 & 0.0761819  & 0.00 \\
+                agetest  &   -0.0408029 & 0.0133116  & 0.00\\
+                girl   &  0.0812035  & 0.0284988  & 0.00\\
+                etpteacher   &  0.17987574 & 0.0374764    & 0.00\\
+                percentile  &  0.0173172 & 0.0007203   & 0.00\\
+                cons  &  -0.729054  & 0.129734  & 0.00\\
+                \hline
+            \end{tabular} 
+        \end{threeparttable}
+        \caption{\label{font-table} 聚类标准误. }
+    \end{table}
+
+    \begin{table}[h]
+        \centering
+        \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                standardize & coefficient & Robuststd.err & P \\
+                \hline
+                Tracking &  0.1725117 & 0.0240222  & 0.00 \\
+                agetest  &   -00408029 & 0.0084928   & 0.00\\
+                girl   &  0.1798757 & 0.0240886  & 0.00\\
+                etpteacher   &  0.0173172 & 0.0237054    & 0.00\\
+                percentile  &  -0.0710354 & 0.0004246   & 0.00\\
+                cons  &  -0.729054  & 0.0809656   & 0.00\\
+                \hline
+            \end{tabular} 
+        \end{threeparttable}
+        \caption{\label{font-table} 稳健标准误. }
+    \end{table}
+    由表可以看出，聚类标准误明显大于稳健标准误。
+
+
+
+
+\end{solution}
+
+
+
+
 
 
 
