@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{threeparttable}
+\usepackage{listings}
 \usepackage{cases}
 \usepackage[left=1in,right=1.25in,top=0.25in,bottom=1in]{geometry}%设置页边距
 \title{\textbf{Advanced Econometrics}}
@@ -444,10 +445,117 @@ What is the intercept $\phi$?
 
 \end{solution}
 
+%%另起一page
+\newpage
+{\fontsize{14pt}{16pt}\selectfont \textbf{代码附录}}
+
+{\fontsize{8pt}{12pt}\selectfont \textbf{第三题代码}}
+\lstset{language=Python,basicstyle=\ttfamily\small}
+    \begin{lstlisting}
+        keep if female ==0&month ==3& age>30&age<40     ///&prcitshp == 1  //保留变量
+        //save "C:\Users\ASUS\Desktop\Econometrics\201903 born in us.dta"  //美国国籍的人
+        save "C:\Users\ASUS\Desktop\Econometrics\201903 in us.dta"
+
+
+        //每次开始
+        keep educ educ92 wage3 wage4 rw_ot rw //去除多余变量，看起来更加简洁    
+        drop if missing(wage4, rw_ot)
+        //twoway (scatter rw_ot educ, msymbol(O) mcolor(blue) msize(medium) mstyle(p9)) 
+        //画图
+        twoway (scatter wage4 educ, msymbol(T) mcolor(red) msize(medium) mstyle(p9)
+        xlabel(1 "LTHS" 2 "HS" 3 "Some colleges" 4 " Colleges" 5 "Advanced",valuelabel))
+        (lfit wage4 educ) //画图 不错
+
+
+        //回归
+        regress wage4 educ nonconstant
+    \end{lstlisting}
+
+{\fontsize{8pt}{12pt}\selectfont \textbf{第四题代码}}
+    \begin{lstlisting}
+                //ATE
+        mean(re78) if treat ==1 
+        mean(re75)  if treat ==0
+
+        //ATT and selection bias
+        mean(re75) if treat ==0
+        mean(re75) if treat ==1 
 
 
 
+        summarize age education black hispanic married nodegree re75 re78 if treat==0
+        summarize age education black hispanic married nodegree re75 re78 if treat==1
+        egen mean_age_0 = mean(age) if treat==0
+        egen mean_age_1 = mean(age) if treat==1
+        egen diff_age = mean_age_1 - mean_age_0
+        egen mean_education_0 = mean(education) if treat==0
+        egen mean_education_1 = mean(education) if treat==1
+        egen diff_education = mean_education_1 - mean_education_0
+        egen mean_black_0 = mean(black) if treat==0
+        egen mean_black_1 = mean(black) if treat==1
+        egen diff_black = mean_black_1 - mean_black_0
+        egen mean_hispanic_0 = mean(hispanic) if treat==0
+        egen mean_hispanic_1 = mean(hispanic) if treat==1
+        egen diff_hispanic = mean_hispanic_1 - mean_hispanic_0
+        egen mean_married_0 = mean(married) if treat==0
+        egen mean_married_1 = mean(married) if treat==1
+        egen diff_married = mean_married_1 - mean_married_0
+        egen mean_nodegree_0 = mean(nodegree) if treat==0
+        egen mean_nodegree_1 = mean(nodegree) if treat==1
+        egen diff_nodegree = mean_nodegree_1 - mean_nodegree_0
+        egen mean_re75_0 = mean(re75) if treat==0
+        egen mean_re75_1 = mean(re75) if treat==1
+        egen diff_re75 = mean_re75_1 -re75_0
+        // 对其他变量重复上述步骤
+        //t检验
+        ttest age, by(treat)
+        local p_age = r(p)
+        ttest education, by(treat)
+        local p_education = r(p)
+        ttest black, by(treat)
+        local p_black = r(p)
+        ttest hispanic, by(treat)
+        local p_hispanic = r(p)
+        ttest married, by(treat)
+        local p_married = r(p)
+        ttest nodegree, by(treat)
+        local p_nodegree = r(p)
+        ttest re75, by(treat)
+        local p_re75 = r(p)
 
+        //iii
+        summarize re78 if treat == 0
+        summarize re78 if treat == 1
+        reg re78 treat
+        reg re78 treat age
+        reg re78 treat age education
+        reg re78 treat age education black
+        reg re78 treat age education black hispanic
+        reg re78 treat age education black hispanic married
+        reg re78 treat age education black hispanic married re75
+        reg re78 treat age education black hispanic married nodegree re75
+    \end{lstlisting}
+
+{\fontsize{8pt}{12pt}\selectfont \textbf{第五题代码}}
+    \begin{lstlisting}
+        //标准化
+        summarize totalscore
+        local mean = r(mean)
+        local sd = r(sd)
+        generate standardized_totalscore = (totalscore - mean) / sd
+        //稳健回归
+        regress standardized_totalscore tracking ,robust
+        //聚类稳健的标准误
+        regress standardized_totalscore tracking , vce(cluster schoolid)
+        
+        //删除缺失值
+        drop if missing
+        (standardized_totalscore, tracking ,agetest ,girl, etpteacher, percentile)
+        //回归
+        regress standardized_totalscore tracking agetest girl etpteacher percentile,robust
+        regress standardized_totalscore tracking agetest girl etpteacher percentile 
+        ,vce(cluster schoolid)
+    \end{lstlisting}
 
 
 \iffalse
