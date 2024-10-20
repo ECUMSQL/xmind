@@ -246,7 +246,7 @@ What is the intercept $\phi$?
         \end{cases*}
     \end{equation*}
     且$E(Y_i(0)|D_i = 1)$。表示上了大学的人如果未上大学的薪资。若无选择性偏误，那么其处理效应则是12.6，如存在选择偏误，则无法测算。
-    \qedsymbol
+\\    \qedsymbol
 \end{solution}
 
 %%第四题
@@ -267,7 +267,7 @@ What is the intercept $\phi$?
     i.本题假设在三年期间不存在任何其他可能影响收入的事件发生，或者说假设培训对于收入在三年间的影响是最大的。对于ATT有Rubin模型知：ATE=$E(Y_{1i}|treat_i=1)-E(Y_{0i}|treat_i=0)，ATE -ATT = selection bias$。而ATT无法被直接测算出来，可以用三年前的初始收入量差距作为实验的选择偏差。\\
     数据计算得：selection bias =39.415, ATE=886.304  ATT= 846.889。因此ATE微大于ATT，可以认为基本相等。\\
 
-    ii. 通过数据的表格如下：\\
+    ii. 通过数据的表格如下：
     \begin{table}[h]
         \centering
         \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
@@ -296,14 +296,11 @@ What is the intercept $\phi$?
                     \item[1]P-value小于0.05时证明在5\%的置信区间内，差异显著
             \end{tablenotes}
         \end{threeparttable}
-        \caption{\label{font-table} 随机化检验. }
+        \caption{\label{font-table}  difference and the p-value  }
     \end{table}\\
-    由上表知，除了学位，其他的特征的差异都不显著，P值大于0.05。因此可以认为随机化是有效的。\\
-\\
-\\
-\\
+    由表1知，除了学位，其他的特征的差异都不显著，P值大于0.05。因此可以认为随机化是有效的。\\
 
-    iii. 由上知，75年的收入均值的差异不显著。根据stata做表得：\\
+    iii. 由上知，75年的收入均值的差异不显著。根据stata做表得：
     \begin{table}[h]
         \centering
         \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
@@ -311,7 +308,10 @@ What is the intercept $\phi$?
             variables & treat==0& treat==1 \\   
             \hline
             mean & 5090.048 & 5976.352 \\
-            treat & \multicolumn{2}{c}{886.3037}\\
+             & 5090.048 & 5976.352 \\
+             \hline
+            treat & \multicolumn{2}{c}{estimate of regression}\\
+            \hline
             age & \multicolumn{2}{c}{882.2074}\\
     
             education & \multicolumn{2}{c}{831.039} \\
@@ -327,27 +327,28 @@ What is the intercept $\phi$?
             nodegree &\multicolumn{2}{c}{806.5113} \\
             \hline
         \end{tabular} 
-        \caption{\label{font-table} 培训处理效果. }
+        \caption{\label{font-table} means and estimate. }
     \end{table}\\
-    由表可以看出，表中的回归系数基本变化不大，这证明基本不存在选择偏误，表明明处理效应相对稳定，不受这些协变量的影响。实验的随机化很好。
+    由表2可以看出，表中的回归系数基本变化不大，这证明基本不存在选择偏误，表明明处理效应相对稳定，不受这些协变量的影响。实验的随机化很好。
     
 
 
     iv. 由上两题知，实验的随机化水平很好，这意味着基本不存在选择偏误。那么实际的处理效应基本等于处理前后的收入的差距。由于初始的差异不显著，可以认为收入可以被很好的由是否培训的处理预测，即均值估计量差异基本无偏。
     \\
     
-    v.依据数据，得出的density functions画图如下：\\
-    \begin{figure}[htbp] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
+    v.依据数据，得出的density functions画图如下：
+    \begin{figure}[h] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
         \centering
         \includegraphics[scale=0.5]{density function.eps}
         \caption{Density functions}
         %%\label{}标签
     \end{figure}
-
+    可知处理组的实际工资在高水平上明显多于对照组，同时在中低水平的影响不大。同时控制组在0附近存在较大数量，这证明仍存在大量的对照组人员处于失业状态。
+    \\
     \qedsymbol
 \end{solution}
 
-
+\clearpage
 %%第五题
 \item[\textbf{5.}]  Duflo, Dupas, and Kremer (2011) investigate the impact of tracking (assigning students based on initial test score) on educational attainment in a randomized experiment. An extract of their data set is available on the Bruce Hansen textbook webpage in the file \textbf{DDK2011}.
 
@@ -393,13 +394,14 @@ What is the intercept $\phi$?
         \end{threeparttable}
         \caption{\label{font-table} 聚类稳健的标准误. }
     \end{table}
-    由上表可以看出稳健的标准误以及聚类稳健的标准误情况下，系数基本没有差距，这表明分班对于测试成绩具有正向影响。同时也看出在学校层面的聚类标准误不显著，这可能是因为学校于分班存在某种相关性，导致聚类稳健的显著性下降。
+    由表3，4可以看出稳健的标准误以及聚类稳健的标准误情况下，系数基本没有差距，这表明分班对于测试成绩具有正向影响。同时也看出在学校层面的聚类标准误不显著，这可能是因为学校于分班存在某种相关性，导致聚类稳健的显著性下降。
 
 
+    ii. 由数据回归画表得， 观察可知，聚类标准误在各个变量方向上基本都大于稳健标准误。在进行稳健标准误之后，Tracking即是否有分班的影响。在聚类之后变化最大。
 
+    iii.由i题和ii题comparison知，在加入个体控制变量之后。Tracking的系数有一个相对较大的上升，这表明了个体的控制变量会对于Tracking和得分之间relationship产生影响，这是由于原来作为遗漏变量的变量被重新加入回归，同时这些变量是与Tracking负相关的，这就导致加入后Tracking系数变大。
+    同时也不能断定是否存在剩余的遗漏变量（未控制好随机化，可观察的变量是导致选择偏误的唯一原因）。
 
-
-    ii. 由数据回归知，
     \begin{table}[h]
         \centering
         \begin{threeparttable}%%[l]表示表格左对齐，[c]表示表格居中对齐，[r]表示表格右对齐
@@ -437,12 +439,8 @@ What is the intercept $\phi$?
         \end{threeparttable}
         \caption{\label{font-table} 稳健标准误. }
     \end{table}
-    观察可知，聚类标准误在各个变量方向上基本都大于稳健标准误。在进行稳健标准误之后，Tracking即是否有分班的影响。在聚类之后变化最大。
 
 
-
-    iii.由i题和ii题comparison知，在加入个体控制变量之后。Tracking的系数有一个相对较大的上升，这表明了个体的控制变量会对于Tracking和得分之间relationship产生影响，这是由于原来作为遗漏变量的变量被重新加入回归，同时这些变量是与Tracking负相关的，这就导致加入后Tracking系数变大。
-    同时也不能断定是否存在剩余的遗漏变量（未控制好随机化，可观察的变量是导致选择偏误的唯一原因）。
 
     \qedsymbol
 
@@ -450,7 +448,7 @@ What is the intercept $\phi$?
 \end{solution}
 
 %%另起一page
-\newpage
+\clearpage
 {\fontsize{14pt}{16pt}\selectfont \textbf{代码附录}}
 
 {\fontsize{8pt}{12pt}\selectfont \textbf{第三题代码}}

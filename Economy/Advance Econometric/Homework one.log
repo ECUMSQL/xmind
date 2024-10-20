@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.7)  20 OCT 2024 20:16
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.7)  20 OCT 2024 20:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -654,32 +654,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 267--269
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--305
+Underfull \hbox (badness 10000) in paragraph at lines 270--302
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--305
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 270--305
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 270--305
-
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 336--338
 
  []
@@ -688,18 +669,11 @@ File: density function.eps Graphic file (type eps)
 <density function.eps>
 
 
-[6]
-
 [7]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+[8
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[8]
+]
 
 [9] (f:/LateX/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -731,56 +705,58 @@ Package fontspec Info:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9.03374> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 459.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 457.
 
-Overfull \hbox (32.75659pt too wide) in paragraph at lines 459--460
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 457--458
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (54.43774pt too wide) in paragraph at lines 460--461
+Overfull \hbox (54.43774pt too wide) in paragraph at lines 458--459
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (43.59717pt too wide) in paragraph at lines 467--468
+Overfull \hbox (43.59717pt too wide) in paragraph at lines 465--466
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.91602pt too wide) in paragraph at lines 469--470
+Overfull \hbox (21.91602pt too wide) in paragraph at lines 467--468
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (49.01746pt too wide) in paragraph at lines 470--471
+Overfull \hbox (49.01746pt too wide) in paragraph at lines 468--469
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (32.75659pt too wide) in paragraph at lines 490--491
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 488--489
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (32.75659pt too wide) in paragraph at lines 491--492
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 489--490
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
 
-[10]
-Overfull \hbox (16.49573pt too wide) in paragraph at lines 557--558
+[10
+
+]
+Overfull \hbox (16.49573pt too wide) in paragraph at lines 555--556
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (59.85803pt too wide) in paragraph at lines 559--560
+Overfull \hbox (59.85803pt too wide) in paragraph at lines 557--558
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.91602pt too wide) in paragraph at lines 560--561
+Overfull \hbox (21.91602pt too wide) in paragraph at lines 558--559
 [][][][][][][][][][][][][][][][] 
  []
 
@@ -799,10 +775,10 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  12381 strings out of 474234
  297854 string characters out of 5743127
- 966811 words of memory out of 5000000
+ 966802 words of memory out of 5000000
  34818 multiletter control sequences out of 15000+600000
  575713 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,13n,111p,1179b,1873s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,13n,111p,1179b,1875s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on Homework one.pdf (11 pages).
