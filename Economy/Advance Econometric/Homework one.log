@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.7)  20 OCT 2024 20:14
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.7)  20 OCT 2024 20:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -566,11 +566,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 434.90039pt, 90.3375pt)
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
 * v-part:(T,H,B)=(57.81621pt, 714.96065pt, 72.26999pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=434.90039pt
+* \textwidth=452.9679pt
 * \textheight=714.96065pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
@@ -633,13 +633,18 @@ File: Scatter plot in us 3.1.eps Graphic file (type eps)
 File: R CEF.eps Graphic file (type eps)
 <R CEF.eps>
 
+
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 216--241
 
  []
 
 
+Overfull \hbox (197.6595pt too wide) in paragraph at lines 255--256
+[]  \TU/lmr/m/n/10.53937 The dataset for this homework is called \TU/lmr/bx/n/10.53937 nsw.dta\TU/lmr/m/n/10.53937 , which can be downloaded from https://users.nber.org/$\OMS/cmsy/m/n/10.53937 ^^X$\TU/lmr/m/n/10.53937 rdehejia/data/.nswdata2.html,
+ []
 
-[4]
+
 
 [5]
 Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
@@ -679,14 +684,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--338
 
  []
 
-
-
-[6]
 File: density function.eps Graphic file (type eps)
 <density function.eps>
 
 
+[6]
+
 [7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 
 [8]
 
@@ -722,59 +733,54 @@ Package fontspec Info:
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9.03374> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 459.
 
-Overfull \hbox (50.8241pt too wide) in paragraph at lines 459--460
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 459--460
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (72.50525pt too wide) in paragraph at lines 460--461
+Overfull \hbox (54.43774pt too wide) in paragraph at lines 460--461
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.0415pt too wide) in paragraph at lines 465--466
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (61.66467pt too wide) in paragraph at lines 467--468
+Overfull \hbox (43.59717pt too wide) in paragraph at lines 467--468
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (39.98352pt too wide) in paragraph at lines 469--470
+Overfull \hbox (21.91602pt too wide) in paragraph at lines 469--470
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (67.08496pt too wide) in paragraph at lines 470--471
+Overfull \hbox (49.01746pt too wide) in paragraph at lines 470--471
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (50.8241pt too wide) in paragraph at lines 490--491
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 490--491
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (50.8241pt too wide) in paragraph at lines 491--492
+Overfull \hbox (32.75659pt too wide) in paragraph at lines 491--492
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
 
 [10]
-Overfull \hbox (34.56323pt too wide) in paragraph at lines 557--558
+Overfull \hbox (16.49573pt too wide) in paragraph at lines 557--558
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (77.92554pt too wide) in paragraph at lines 559--560
+Overfull \hbox (59.85803pt too wide) in paragraph at lines 559--560
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (39.98352pt too wide) in paragraph at lines 560--561
+Overfull \hbox (21.91602pt too wide) in paragraph at lines 560--561
 [][][][][][][][][][][][][][][][] 
  []
 
@@ -793,7 +799,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  12381 strings out of 474234
  297854 string characters out of 5743127
- 966818 words of memory out of 5000000
+ 966811 words of memory out of 5000000
  34818 multiletter control sequences out of 15000+600000
  575713 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
