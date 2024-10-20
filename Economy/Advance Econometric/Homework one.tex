@@ -259,8 +259,8 @@ What is the intercept $\phi$?
 
 %%第四题解答
 \begin{solution}
-    i.本题假设在三年期间不存在任何其他可能影响收入的事件发生，或者说假设培训对于收入在三年间的影响是最大的。对于ATT有Rubin模型知：ATE=$E(Y_{1i}|treat_i=1)-E(Y_{1i}|treat_i=0)$
-    数据计算得：ATT=  2910.254 。而ATE=2949.669 。因此ATE>ATT。\\
+    i.本题假设在三年期间不存在任何其他可能影响收入的事件发生，或者说假设培训对于收入在三年间的影响是最大的。对于ATT有Rubin模型知：ATE=$E(Y_{1i}|treat_i=1)-E(Y_{0i}|treat_i=0)，ATE -ATT = selection bias$。而ATT无法被直接测算出来，可以用三年前的初始收入量差距作为实验的选择偏差。\\
+    数据计算得：selection bias =39.415, ATE=2949.669  ATT= 2910.254。因此ATE微大于ATT。\\
 
     ii. 通过数据的表格如下：\\
     \begin{table}[h]
