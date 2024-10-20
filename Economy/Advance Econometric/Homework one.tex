@@ -177,7 +177,7 @@ What is the intercept $\phi$?
 \item[ii.]  Estimate the CEF using OLS. Why is the CEF linear in this case and show that OLS will generate a consistent estimate of the CEF?
 \item[iii.]  We wish to estimate the causal effect on earnings of college attendance relative to only completing high school. Please use the framework of the Rubin Causal Model to assess if your comparison from question ii gives you a causal estimate, e.g., what is $D_i$, what is $E[Y_i(0)|D_i = 1]$, etc.
 \end{enumerate}
-
+%%第三题解答
 \begin{solution}
     i.  在根据年龄，时间对于数据进行清洗过后得到1717符合条件的数据，同时去除存在缺失值的条目，得到1275条数据，绘制散点图得：%%有个货乱填
     \begin{figure}[htbp] %%图片位置，htbp分别表示在当前页，顶部，底部，浮动页
@@ -240,9 +240,8 @@ What is the intercept $\phi$?
             0, & \text{上高中未上大学}\\
         \end{cases*}
     \end{equation*}
-    且$E(Y_i(0)|D_i = 1)$。表示上了大学的人如果未上大学的薪资。若无选择性偏误，那么其处理效应则是12.6，如存在选择偏误，则无法测算。\\
-
-
+    且$E(Y_i(0)|D_i = 1)$。表示上了大学的人如果未上大学的薪资。若无选择性偏误，那么其处理效应则是12.6，如存在选择偏误，则无法测算。
+    \qedsymbol
 \end{solution}
 
 %%第四题
@@ -339,6 +338,8 @@ What is the intercept $\phi$?
         \caption{Density functions}
         %%\label{}标签
     \end{figure}
+
+    \qedsymbol
 \end{solution}
 
 
@@ -431,9 +432,14 @@ What is the intercept $\phi$?
         \end{threeparttable}
         \caption{\label{font-table} 稳健标准误. }
     \end{table}
-    由表可以看出，聚类标准误明显大于稳健标准误。
+    观察可知，聚类标准误在各个变量方向上基本都大于稳健标准误。在进行稳健标准误之后，Tracking即是否有分班的影响。在聚类之后变化最大。
 
 
+
+    iii.由i题和ii题comparison知，在加入个体控制变量之后。Tracking的系数有一个相对较大的上升，这表明了个体的控制变量会对于Tracking和得分之间relationship产生影响，存在选择偏误。
+    使得处理效应估计的结果偏大。    
+
+    \qedsymbol
 
 
 \end{solution}
