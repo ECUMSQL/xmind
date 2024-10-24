@@ -50,7 +50,111 @@ The empirical exercises should be done in Stata and a copy of your Stata code sh
 
 %%第一题解
     \begin{solution}
-    
+        i.在回归之前首先对变量进行线性检验。所得的散点图如下：\\
+        \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.8]{hw2i.eps}
+            \caption{$x_1$的散点图}
+        \end{figure}
+        由图可知，$x_i$的三个变量基本符合线性假设。进行回归并且进行共线性检验得到的结果如下：
+        \clearpage  
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                variables & coefficient & P-value\\
+                \hline
+                educ &  0.0737621  & 0.00\\
+                potexpri & 0.0394896  & 0.00\\
+                ability & 0.0828907 & 0.00 \\
+                constant & 1.027229 & 0.00\\
+                VIF & \multicolumn{2}{c}{1.30}\\
+                \hline
+            \end{tabular} 
+            \caption{\label{font-table} regression results \& VIF} 
+        \end{table}
+        由上表可知，回归满足多重共线性假设，不存在多重共线性。系数如上。\\
+        ii. 根据题目要求，对于$X_2$中的三个变量，分别进行回归并且保存残差。然后对$Y$进行回归，其中残差系数和变量系数如下表2所示：
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{lll|lll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                variables & coefficient & P-value & variables & coefficient & P-value\\
+                \hline
+                educ &  0.0722035  & 0.00 & educ &  0.0737621  & 0.00\\
+                potexpri & 0.0395093  & 0.00 & potexpri &  0.0394896  & 0.00\\
+                ability & 0.0774678 & 0.00 & ability &  0.0828907  & 0.00\\
+                \hline
+                mothered & -0.000117  & 0.00 & resid\_mother &  -0.000117  & 0.945\\
+                fathered & 0.0054569  & 0.00 & resid\_father &  0.0054569  & 0.00\\
+                siblings & 0.0047656 & 0.00 & resid\_siblings &  0.0047656  & 0.00\\
+                constant & 0.9695096 & 0.00 & constant &  1.027229  & 0.00\\
+                \hline
+            \end{tabular} 
+            \caption{\label{font-table} regression residuals} 
+        \end{table}\\
+        由上表知，带有残差作为回归元的残差系数与对应变量的系数相同，同时其他变量的系数也基本相同。残差系数不变的原因是由于$X_1$和$X_2$的变量之间线性相关，即$X_2$可以被$X_1$的变量表示，那么原来的$X_2$系数即表示其独特的那部分，因此残差也是表示与其他变量无关的部分，同时其他的变量的系数产生编变化。\\
+
+        iii.由题意知，对于$Y$，$X_1$和$X_2$进行回归，结果如下：
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{lll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                variables & coefficient & P-value \\
+                \hline
+                educ &  0.0711887  & 0.00 \\
+                potexpri & 0.0395104  & 0.00 \\
+                ability & 0.0773688 & 0.00 \\
+                mothered & 0.000071  & 0.967 \\
+                fathered & 0.0053168  & 0.00 \\
+                siblings & 0.0048714 & 0.007  \\
+                brknhome & -0.0528695 & 0.00  \\
+                constant & 0.9896543 & 0.00  \\
+                \hline
+            \end{tabular} 
+            \caption{\label{font-table} regression in general} 
+        \end{table}\\
+        同时进行White检验和BP检验来验证异方差性，结果如下：
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{llll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                 & White test & BP test & GL test\\
+                \hline
+                $\chi^2$ &  190.48  & 139.05 & 3469.021\\
+                p-value & 0.00 & 0.00 & 0.00 \\
+                \hline
+            \end{tabular} 
+            \caption{\label{font-table} White test\& BP test\&GL test} 
+        \end{table}\\
+        以上两个检验的原假设都是存在同方差，由表3知，三个检验的p值都小于0.05，因此拒绝原假设，即认为存在异方差。\\
+        因此进行异方差稳健的标准误d的回归，与标准误差对比结果如下：\\
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{lll}%%l表示左对齐，c表示居中对齐，r表示右对齐，p表示百分数
+                \hline
+                variables & std err & robust err \\
+                \hline
+                educ &  0.0022572  & 0.0023585 \\
+                potexpri & 0.0008986  & 0.0009037 \\
+                ability & 0.0049336 & 0.0049804 \\
+                mothered & 0.0016954  & 0.001715 \\
+                fathered & 0.0013379  & 0.0013548 \\
+                siblings & 0.0017912 & 0.0017806  \\
+                brknhome & 0.0099904 & 0.0101058  \\
+                constant & 0.0338945 & 0.0335674  \\
+                \hline
+            \end{tabular} 
+            \caption{\label{font-table} regression in general} 
+        \end{table}\\
+        由表5可以看出，稳健标准误与非稳健标准误相比，基本没有变化。\\
+        且经过计算其额外一年教育的边际价值（以美元 / 小时为单位）的估计值是2.304955 。\\
+
+
+
+
+
+
 
 
         \qedsymbol
@@ -59,8 +163,7 @@ The empirical exercises should be done in Stata and a copy of your Stata code sh
 
 
 
-
-
+    \clearpage  
     %第二题
     \item [\textbf{2.}]Critical Summary Writing. Pick a published paper from top journals (AER, Econometrica, JPE, QJE, RES, JF, JFE, RFS, JFQA, MS) that uses field/quasi experiments for causal inference. The paper should be different from those in the presentation list. Write a summary of the paper in your own words in no more than 500 words (in English). Do not copy and paste the abstract of the paper. Pay particular attention to the experimental design, empirical methodology, and how the authors address internal and external validity concerns.
     
